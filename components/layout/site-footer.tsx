@@ -10,7 +10,7 @@ export function SiteFooter() {
         <div className="space-y-6">
           <Link href="/" aria-label="TORINOVA home" className="inline-flex">
             <Image
-              src="/logos/torinova-logo.png"
+              src="/logos/torinova-logo.svg"
               alt="TORINOVA"
               width={491}
               height={172}

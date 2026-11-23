@@ -1,4 +1,4 @@
-import { Manrope, Space_Grotesk } from "next/font/google";
+import { Manrope, Sora } from "next/font/google";
 
 export const fontBody = Manrope({
   subsets: ["latin"],
@@ -6,7 +6,7 @@ export const fontBody = Manrope({
   display: "swap",
 });
 
-export const fontDisplay = Space_Grotesk({
+export const fontDisplay = Sora({
   subsets: ["latin"],
   variable: "--font-display",
   display: "swap",

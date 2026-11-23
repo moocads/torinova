@@ -1,5 +1,5 @@
 import { Menu, X } from "lucide-react";
-import Link from "next/link";
+import { NavLink } from "@/components/layout/nav-link";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -21,13 +21,12 @@ export function MobileNav({ nav, walmartUrl }: MobileNavProps) {
       <div className="absolute inset-x-0 top-full border-b bg-background/98 shadow-soft backdrop-blur-xl">
         <nav className="mx-auto flex max-w-7xl flex-col gap-2 px-6 py-6" aria-label="Mobile navigation">
           {nav.map((item) => (
-            <Link
+            <NavLink
               key={item.href}
               href={item.href}
+              label={item.label}
               className="rounded-lg px-4 py-3 text-base font-medium transition-colors hover:bg-muted"
-            >
-              {item.label}
-            </Link>
+            />
           ))}
           <a
             href={walmartUrl}

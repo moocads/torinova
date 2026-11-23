@@ -1,52 +1,69 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { Section } from "@/components/layout/section";
+import { ArrowRight, Coffee, Droplets, Milk, Snowflake } from "lucide-react";
+import { Container } from "@/components/layout/container";
+import { OrbitingAccent } from "@/components/motion/orbiting-accent";
 import { Reveal } from "@/components/motion/reveal";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-const functions = ["Espresso", "Over Ice", "Hot Water", "Hot Foam"];
+const functions = [
+  { label: "Espresso", icon: Coffee },
+  { label: "Over Ice", icon: Snowflake },
+  { label: "Hot Water", icon: Droplets },
+  { label: "Hot Foam", icon: Milk },
+] as const;
 
 export function FeaturedProductSection() {
   return (
-    <Section className="bg-foreground text-background">
-      <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-16">
-        <Reveal direction="left" className="relative aspect-square overflow-hidden rounded-2xl bg-background">
-          <Image
-            src="/images/em200-controls.jpg"
-            alt="EM200 touch controls for espresso, iced coffee, hot water, and milk foam"
-            fill
-            sizes="(max-width: 1024px) 100vw, 50vw"
-            className="object-cover"
-          />
-        </Reveal>
-        <Reveal direction="right" className="flex flex-col items-start gap-8">
+    <section className="relative isolate overflow-hidden bg-white">
+      <Container className="relative grid items-center gap-12 py-16 lg:min-h-[36rem] lg:grid-cols-[1fr_0.95fr] lg:gap-16">
+        <Reveal direction="left" className="flex max-w-xl flex-col items-start gap-8">
           <div className="space-y-4">
-            <h2 className="font-display text-4xl font-semibold leading-tight tracking-[-0.03em] sm:text-5xl">
+            <h2 className="font-display text-4xl font-semibold leading-tight tracking-[-0.03em] text-black sm:text-5xl">
               EM200
             </h2>
-            <p className="max-w-lg text-lg leading-relaxed text-background/70">
+            <p className="text-lg leading-relaxed text-black">
               A compact 20-bar espresso machine with one-touch controls and the flexibility to move from hot to iced.
             </p>
           </div>
-          <ul className="grid grid-cols-2 gap-x-8 gap-y-4 border-y border-background/20 py-6 text-lg font-medium">
-            {functions.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
+          <ul className="flex flex-wrap gap-3">
+            {functions.map((item) => {
+              const Icon = item.icon;
+              return (
+                <li
+                  key={item.label}
+                  className="inline-flex items-center gap-2 rounded-lg border border-black/10 bg-black/5 px-3 py-2 text-sm font-medium text-black"
+                >
+                  <Icon className="size-4" aria-hidden="true" />
+                  {item.label}
+                </li>
+              );
+            })}
           </ul>
           <Link
             href="/products/em200"
-            className={cn(
-              buttonVariants({ variant: "secondary", size: "lg" }),
-              "min-w-44",
-            )}
+            className={cn(buttonVariants({ variant: "default", size: "lg" }), "min-w-44")}
           >
             View Product
             <ArrowRight aria-hidden="true" />
           </Link>
         </Reveal>
-      </div>
-    </Section>
+
+        <Reveal
+          direction="right"
+          className="relative ml-auto aspect-square w-full max-w-md lg:max-w-lg"
+        >
+          <OrbitingAccent />
+          <Image
+            src="/images/em200-front.png"
+            alt="TORINOVA EM200 home espresso machine"
+            fill
+            sizes="(max-width: 1024px) 100vw, 40vw"
+            className="relative z-10 object-contain"
+          />
+        </Reveal>
+      </Container>
+    </section>
   );
 }

@@ -16,7 +16,7 @@ export function AboutPurposeSection() {
         </Reveal>
         <Reveal direction="right" className="overflow-hidden rounded-2xl shadow-soft-lg">
           <Image
-            src="/images/em200-iced.jpg"
+            src="/images/em200-iced-lady.webp"
             alt="Iced espresso prepared at home with the TORINOVA EM200"
             width={1254}
             height={1254}
