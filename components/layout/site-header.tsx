@@ -1,36 +1,47 @@
-import { getTranslations } from "next-intl/server";
-import { Link } from "@/i18n/navigation";
+import Image from "next/image";
+import Link from "next/link";
+import { ExternalLink } from "lucide-react";
+import { MobileNav } from "@/components/layout/mobile-nav";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { siteConfig } from "@/lib/site-config";
 import { Container } from "./container";
-import { LanguageSwitcher } from "./language-switcher";
-import { ThemeToggle } from "./theme-toggle";
-import { MobileNav } from "./mobile-nav";
 
-export async function SiteHeader({ locale }: { locale: string }) {
-  const t = await getTranslations({ locale, namespace: "Nav" });
-
+export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur">
-      <Container className="relative flex h-16 items-center justify-between gap-6">
-        <Link href="/" className="text-lg font-semibold tracking-tight">
-          {siteConfig.name}
+    <header className="sticky top-0 z-40 border-b bg-background/92 backdrop-blur-xl">
+      <Container className="flex h-16 items-center justify-between gap-6">
+        <Link href="/" aria-label="TORINOVA home" className="shrink-0">
+          <Image
+            src="/logos/torinova-logo.png"
+            alt="TORINOVA"
+            width={491}
+            height={172}
+            className="h-auto w-36"
+            unoptimized
+          />
         </Link>
-        <nav aria-label="Primary" className="hidden items-center gap-6 md:flex">
+        <nav className="hidden items-center gap-8 md:flex" aria-label="Primary navigation">
           {siteConfig.nav.map((item) => (
             <Link
-              key={item.key}
+              key={item.href}
               href={item.href}
-              className="text-sm text-muted-foreground transition-all duration-300 ease-out hover:text-foreground"
+              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
-              {t(item.key)}
+              {item.label}
             </Link>
           ))}
         </nav>
-        <div className="flex items-center gap-2">
-          <LanguageSwitcher className="hidden md:flex" />
-          <ThemeToggle />
-          <MobileNav />
-        </div>
+        <a
+          href={siteConfig.walmartUrl}
+          target="_blank"
+          rel="noreferrer"
+          className={cn(buttonVariants(), "hidden md:inline-flex")}
+        >
+          Buy at Walmart
+          <ExternalLink aria-hidden="true" />
+        </a>
+        <MobileNav nav={siteConfig.nav} walmartUrl={siteConfig.walmartUrl} />
       </Container>
     </header>
   );

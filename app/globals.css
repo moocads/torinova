@@ -1,37 +1,27 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-/* Class-based dark mode (Standard §15) — toggled by next-themes on <html class="dark"> */
 @custom-variant dark (&:is(.dark *));
 
-/* ==========================================================================
-   BRAND TOKENS — Tailwind v4 has no tailwind.config.ts; brand colours live here.
-   Replace the brand-* scale with the client's palette (keep 50–950 steps).
-   Use as: bg-brand-600, text-brand-50, border-brand-200 …
-   ========================================================================== */
 @theme {
-  --color-brand-50: oklch(0.97 0.014 254.6);
-  --color-brand-100: oklch(0.932 0.032 255.6);
-  --color-brand-200: oklch(0.882 0.059 254.1);
-  --color-brand-300: oklch(0.809 0.105 251.8);
-  --color-brand-400: oklch(0.707 0.165 254.6);
-  --color-brand-500: oklch(0.623 0.214 259.8);
-  --color-brand-600: oklch(0.546 0.245 262.9);
-  --color-brand-700: oklch(0.488 0.243 264.4);
-  --color-brand-800: oklch(0.424 0.199 265.6);
-  --color-brand-900: oklch(0.379 0.146 265.5);
-  --color-brand-950: oklch(0.282 0.091 267.9);
-
-  /* Soft shadows only (Standard §5) */
-  --shadow-soft: 0 2px 8px -2px oklch(0 0 0 / 0.06), 0 4px 16px -4px oklch(0 0 0 / 0.06);
-  --shadow-soft-lg: 0 8px 24px -6px oklch(0 0 0 / 0.08), 0 16px 32px -8px oklch(0 0 0 / 0.08);
+  --color-brand-50: oklch(0.97 0.03 153);
+  --color-brand-100: oklch(0.93 0.06 153);
+  --color-brand-200: oklch(0.86 0.1 153);
+  --color-brand-300: oklch(0.77 0.14 153);
+  --color-brand-400: oklch(0.67 0.16 153);
+  --color-brand-500: oklch(0.57 0.16 153);
+  --color-brand-600: oklch(0.48 0.14 153);
+  --color-brand-700: oklch(0.4 0.12 153);
+  --color-brand-800: oklch(0.33 0.09 153);
+  --color-brand-900: oklch(0.27 0.07 153);
+  --color-brand-950: oklch(0.2 0.05 153);
+  --shadow-soft: 0 12px 32px -20px oklch(0.16 0.01 90 / 0.28);
+  --shadow-soft-lg: 0 28px 64px -36px oklch(0.16 0.01 90 / 0.36);
 }
 
-/* shadcn/ui semantic tokens (base-nova, neutral) — primary mapped to brand */
 @theme inline {
-  --font-sans: var(--font-inter), var(--font-noto-sc), ui-sans-serif, system-ui, sans-serif;
-  --font-zh: var(--font-noto-sc), "PingFang SC", "Microsoft YaHei", sans-serif;
-
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display), ui-sans-serif, system-ui, sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -50,8 +40,6 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-
-  /* One rounding system (Standard §5): everything derives from --radius */
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -60,59 +48,69 @@
 }
 
 :root {
-  --radius: 0.75rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
+  --radius: 1rem;
+  --background: oklch(0.975 0.006 95);
+  --foreground: oklch(0.18 0.008 85);
+  --card: oklch(0.995 0.003 95);
+  --card-foreground: oklch(0.18 0.008 85);
+  --popover: oklch(0.995 0.003 95);
+  --popover-foreground: oklch(0.18 0.008 85);
   --primary: var(--color-brand-600);
   --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
+  --secondary: oklch(0.92 0.009 90);
+  --secondary-foreground: oklch(0.22 0.008 85);
+  --muted: oklch(0.94 0.008 92);
+  --muted-foreground: oklch(0.47 0.012 85);
+  --accent: var(--color-brand-100);
+  --accent-foreground: var(--color-brand-900);
+  --destructive: oklch(0.58 0.21 27);
+  --border: oklch(0.85 0.01 90);
+  --input: oklch(0.85 0.01 90);
   --ring: var(--color-brand-400);
 }
 
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: var(--color-brand-400);
-  --primary-foreground: oklch(0.145 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: var(--color-brand-500);
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: oklch(0.15 0.006 85);
+    --foreground: oklch(0.94 0.007 95);
+    --card: oklch(0.2 0.007 85);
+    --card-foreground: oklch(0.94 0.007 95);
+    --popover: oklch(0.2 0.007 85);
+    --popover-foreground: oklch(0.94 0.007 95);
+    --primary: var(--color-brand-400);
+    --primary-foreground: oklch(0.15 0.006 85);
+    --secondary: oklch(0.25 0.008 85);
+    --secondary-foreground: oklch(0.94 0.007 95);
+    --muted: oklch(0.23 0.008 85);
+    --muted-foreground: oklch(0.72 0.01 90);
+    --accent: var(--color-brand-900);
+    --accent-foreground: var(--color-brand-100);
+    --border: oklch(0.32 0.01 85);
+    --input: oklch(0.32 0.01 85);
+    --ring: var(--color-brand-500);
+  }
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   html {
     @apply scroll-smooth;
   }
+
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply overflow-x-clip bg-background text-foreground font-sans antialiased;
   }
-  html[lang="zh"] body {
-    @apply font-zh;
+
+  ::selection {
+    @apply bg-brand-200 text-brand-950;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }

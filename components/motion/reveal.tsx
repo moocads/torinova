@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, type HTMLMotionProps } from "motion/react";
+import { motion, type HTMLMotionProps, useReducedMotion } from "motion/react";
 import { EASE_OUT, SCROLL_REVEAL, TWO_COLUMN_OFFSET_X } from "@/lib/motion";
 
 type Direction = "up" | "left" | "right";
@@ -20,12 +20,17 @@ const OFFSETS: Record<Direction, { x: number; y: number }> = {
 // Scroll animation standard (§7): opacity 0→1, y 30→0, once, amount 0.2
 export function Reveal({ direction = "up", delay = 0, children, ...props }: RevealProps) {
   const offset = OFFSETS[direction];
+  const reduceMotion = useReducedMotion();
   return (
     <motion.div
-      initial={{ opacity: 0, ...offset }}
+      initial={reduceMotion ? false : { opacity: 0, ...offset }}
       whileInView={{ opacity: 1, x: 0, y: 0 }}
       viewport={{ once: SCROLL_REVEAL.once, amount: SCROLL_REVEAL.viewportAmount }}
-      transition={{ duration: SCROLL_REVEAL.duration, ease: EASE_OUT, delay }}
+      transition={{
+        duration: reduceMotion ? 0 : SCROLL_REVEAL.duration,
+        ease: EASE_OUT,
+        delay: reduceMotion ? 0 : delay,
+      }}
       {...props}
     >
       {children}

@@ -1,49 +1,44 @@
-"use client";
-
-import { useState } from "react";
-import { useTranslations } from "next-intl";
 import { Menu, X } from "lucide-react";
-import { Link } from "@/i18n/navigation";
-import { siteConfig } from "@/lib/site-config";
-import { Button } from "@/components/ui/button";
-import { LanguageSwitcher } from "./language-switcher";
+import Link from "next/link";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
-export function MobileNav() {
-  const [open, setOpen] = useState(false);
-  const tNav = useTranslations("Nav");
-  const t = useTranslations("Common");
+interface MobileNavProps {
+  nav: ReadonlyArray<{ readonly label: string; readonly href: string }>;
+  walmartUrl: string;
+}
 
+export function MobileNav({ nav, walmartUrl }: MobileNavProps) {
   return (
-    <div className="md:hidden">
-      <Button
-        variant="ghost"
-        size="icon"
-        aria-label={open ? t("closeMenu") : t("openMenu")}
-        aria-expanded={open}
-        aria-controls="mobile-menu"
-        onClick={() => setOpen((v) => !v)}
+    <details className="group md:hidden">
+      <summary
+        className="flex size-10 cursor-pointer list-none items-center justify-center rounded-lg border bg-background transition-colors hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring"
+        aria-label="Toggle navigation"
       >
-        {open ? <X className="size-5" aria-hidden="true" /> : <Menu className="size-5" aria-hidden="true" />}
-      </Button>
-      {open && (
-        <nav
-          id="mobile-menu"
-          aria-label="Mobile"
-          className="absolute inset-x-0 top-full flex flex-col gap-2 border-b bg-background p-6 shadow-soft"
-        >
-          {siteConfig.nav.map((item) => (
+        <Menu className="group-open:hidden" aria-hidden="true" />
+        <X className="hidden group-open:block" aria-hidden="true" />
+      </summary>
+      <div className="absolute inset-x-0 top-full border-b bg-background/98 shadow-soft backdrop-blur-xl">
+        <nav className="mx-auto flex max-w-7xl flex-col gap-2 px-6 py-6" aria-label="Mobile navigation">
+          {nav.map((item) => (
             <Link
-              key={item.key}
+              key={item.href}
               href={item.href}
-              onClick={() => setOpen(false)}
-              className="rounded-md px-3 py-2 text-base hover:bg-muted"
+              className="rounded-lg px-4 py-3 text-base font-medium transition-colors hover:bg-muted"
             >
-              {tNav(item.key)}
+              {item.label}
             </Link>
           ))}
-          <LanguageSwitcher className="pt-4" />
+          <a
+            href={walmartUrl}
+            target="_blank"
+            rel="noreferrer"
+            className={cn(buttonVariants({ size: "lg" }), "mt-2")}
+          >
+            Buy at Walmart
+          </a>
         </nav>
-      )}
-    </div>
+      </div>
+    </details>
   );
 }

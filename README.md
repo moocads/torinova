@@ -1,15 +1,23 @@
-# torinova-web
+# TORINOVA EM200 Website
 
-Next.js 16 · Tailwind v4 · shadcn/ui · motion · next-intl (en/zh). Scaffolded by the `mooc-website` skill.
+English product website for the TORINOVA EM200 espresso machine.
+
+## Stack
+
+- Next.js 16 App Router
+- TypeScript strict
+- Tailwind CSS v4
+- shadcn/ui base-nova
+- Motion
+- Lucide React
+- Node 22 and npm
+
+## Local development
 
 ```bash
 cp .env.example .env.local
 npm install
-npm run dev      # http://localhost:3000  (zh: /zh)
-npm run build
+npm run dev
 ```
 
-- Content: `messages/en.json`, `messages/zh.json`
-- Brand colours: `app/globals.css` → `@theme { --color-brand-* }`
-- CMS: `lib/strapi.ts` (reads `STRAPI_URL`, `STRAPI_API_TOKEN`)
-- Deploy: Vercel (import repo, set env vars from `.env.example`)
+The Walmart destination is configured in `lib/site-config.ts`. Replace the search URL with the final product listing URL before launch.

@@ -1,18 +1,15 @@
-import { Inter, Noto_Sans_SC } from "next/font/google";
+import { Manrope, Space_Grotesk } from "next/font/google";
 
-// Latin UI font
-export const fontSans = Inter({
+export const fontBody = Manrope({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-body",
   display: "swap",
 });
 
-// Simplified Chinese — not preloaded (large), only used when lang="zh"
-export const fontZh = Noto_Sans_SC({
-  weight: ["400", "500", "700"],
-  variable: "--font-noto-sc",
+export const fontDisplay = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-display",
   display: "swap",
-  preload: false,
 });
 
-export const fontVariables = `${fontSans.variable} ${fontZh.variable}`;
+export const fontVariables = `${fontBody.variable} ${fontDisplay.variable}`;

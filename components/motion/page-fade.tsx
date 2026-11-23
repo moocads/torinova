@@ -1,16 +1,17 @@
 "use client";
 
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import { PAGE_FADE } from "@/lib/motion";
 
 // Page-load fade-in (Standard §7)
 export function PageFade({ children }: { children: React.ReactNode }) {
+  const reduceMotion = useReducedMotion();
   return (
     <motion.div
       className="flex flex-1 flex-col"
-      initial={{ opacity: 0 }}
+      initial={reduceMotion ? false : { opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={PAGE_FADE}
+      transition={reduceMotion ? { duration: 0 } : PAGE_FADE}
     >
       {children}
     </motion.div>

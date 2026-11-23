@@ -8,16 +8,17 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 <!-- END:nextjs-agent-rules -->
 
-# torinova-web — MOOC frontend
+# torinova-web - MOOC frontend
 
 This project follows the **MOOC AI Frontend Standard v2.2** (full text: `../../AGENTS.md`
 and the `mooc-website` skill → `references/frontend-standard.md`). Key rules:
 
-- Stack is fixed: Next.js 16 (App Router) · TypeScript strict · Tailwind CSS v4 · shadcn/ui (base-nova) · motion (`motion/react`) · lucide-react · next-intl (en + zh). npm only, Node 22.
+- Stack is fixed: Next.js 16 (App Router), TypeScript strict, Tailwind CSS v4, shadcn/ui (base-nova), motion (`motion/react`), and lucide-react. npm only, Node 22.
 - No CSS Modules, no styled-components, no inline `style={}`, no `tailwind.config.ts` (brand tokens live in `app/globals.css` `@theme`).
-- Every route lives under `app/[locale]/`. Use `Link`/`useRouter` from `@/i18n/navigation`, never `next/link`. All copy goes in `messages/en.json` + `messages/zh.json`.
+- This project is English-only. Routes live directly under `app/`; do not add next-intl or locale-prefixed routes.
 - Pages only compose sections from `components/sections/`. Repeated UI → `components/shared/` with typed props.
-- CMS data only through `lib/strapi.ts` (server-only, `"use cache"`). Env vars: `STRAPI_URL`, `STRAPI_API_TOKEN`.
-- Images: `next/image`, placeholders from `/public/placeholders/` until production.
+- This project is frontend-only. Do not add a CMS, database, authentication, checkout, or payment logic.
+- Images use `next/image` and the approved TORINOVA product assets in `/public/images`.
+- Avoid unnecessary secondary labels and descriptions. Let the layout do the explaining.
 - Spacing scale only: 1 2 3 4 6 8 12 16 (= 4 8 12 16 24 32 48 64px).
 - Before finishing: `npm run lint && npm run build` must pass.
