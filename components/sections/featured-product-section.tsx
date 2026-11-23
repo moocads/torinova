@@ -21,7 +21,8 @@ export function FeaturedProductSection() {
         <Reveal direction="left" className="flex max-w-xl flex-col items-start gap-8">
           <div className="space-y-4">
             <h2 className="font-display text-4xl font-semibold leading-tight tracking-[-0.03em] text-black sm:text-5xl">
-              EM200
+              EM200. <span className="text-brand-600">Ready</span> in about{" "}
+              <span className="text-brand-600">15 sec</span>.
             </h2>
             <p className="text-lg leading-relaxed text-black">
               A compact 20-bar espresso machine with one-touch controls and the flexibility to move from hot to iced.

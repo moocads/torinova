@@ -7,7 +7,8 @@ export const siteConfig = {
     "Thoughtful home espresso machines designed to make café rituals clear, capable, and easy to live with.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   ogImage: "/og/og-default.jpg",
-  walmartUrl: "https://www.walmart.com/search?q=TORINOVA%20EM200",
+  walmartUrl:
+    "https://www.walmart.com/ip/TORINOVA-EM200-20-Bar-Espresso-Machine-with-Milk-Frother/21090364254?classType=REGULAR",
   partnershipEmail: "partnership@torinova.com",
   gaMeasurementId:
     process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? GA_PLACEHOLDER_ID,

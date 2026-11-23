@@ -1,8 +1,8 @@
-import Image from "next/image";
 import { ExternalLink } from "lucide-react";
 import { Container } from "@/components/layout/container";
 import { Reveal } from "@/components/motion/reveal";
-import { buttonVariants } from "@/components/ui/button";
+import { ProductImageGallery } from "@/components/shared/product-image-gallery";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/lib/site-config";
 
@@ -10,7 +10,7 @@ const highlights = [
   { value: "20 bar", label: "Pump pressure" },
   { value: "1400W", label: "Heating power" },
   { value: "57 oz", label: "Removable tank" },
-  { value: "8 min", label: "Auto power-off" },
+  { value: "in 15 sec", label: "Ready to brew" },
 ];
 
 export function HeroSection() {
@@ -25,25 +25,24 @@ export function HeroSection() {
             <p className="max-w-lg text-lg leading-relaxed text-muted-foreground">
               Brew espresso, iced coffee, hot water, and velvety milk foam with one-touch controls.
             </p>
-            <a
-              href={siteConfig.walmartUrl}
-              target="_blank"
-              rel="noreferrer"
-              className={cn(buttonVariants({ size: "lg" }), "min-w-44")}
-            >
-              Buy at Walmart
-              <ExternalLink aria-hidden="true" />
-            </a>
+            <p className="font-display text-3xl font-semibold tracking-tight">$179.99 USD</p>
+            <div className="flex flex-wrap gap-3">
+              <Button type="button" size="lg" disabled className="min-w-52">
+                Buy Now (Out of Stock)
+              </Button>
+              <a
+                href={siteConfig.walmartUrl}
+                target="_blank"
+                rel="noreferrer"
+                className={cn(buttonVariants({ size: "lg" }), "min-w-44")}
+              >
+                Buy at Walmart
+                <ExternalLink aria-hidden="true" />
+              </a>
+            </div>
           </Reveal>
-          <Reveal direction="right" className="relative aspect-square overflow-hidden">
-            <Image
-              src="/images/em200-front.png"
-              alt="TORINOVA EM200 espresso machine in black and brushed stainless steel"
-              fill
-              priority
-              sizes="(max-width: 1024px) 100vw, 56vw"
-              className="object-contain"
-            />
+          <Reveal direction="right" className="min-w-0">
+            <ProductImageGallery />
           </Reveal>
         </Container>
       </section>

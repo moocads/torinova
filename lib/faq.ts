@@ -10,6 +10,10 @@ export const faqItems: ReadonlyArray<FaqItem> = [
       "The EM200 is designed for ground coffee. It does not use capsules, pods, or ESE servings.",
   },
   {
+    question: "How long does the EM200 take to heat up?",
+    answer: "The EM200 is ready to brew in about 15 seconds after power-on.",
+  },
+  {
     question: "Can the EM200 make iced coffee?",
     answer:
       "Yes. The dedicated Over Ice function is designed for drinks such as iced lattes and iced Americanos.",
